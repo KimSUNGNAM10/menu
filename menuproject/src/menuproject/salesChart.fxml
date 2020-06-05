@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuproject.SalesController">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <center>
+      <LineChart BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <RadioButton mnemonicParsing="false" text="일별" />
+            <RadioButton mnemonicParsing="false" text="주별" />
+            <RadioButton mnemonicParsing="false" text="월별" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
