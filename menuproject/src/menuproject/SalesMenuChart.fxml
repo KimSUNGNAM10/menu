@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BarChart BorderPane.alignment="CENTER">
         <xAxis>
@@ -19,6 +18,8 @@
       </BarChart>
    </center>
    <bottom>
-      <ComboBox prefWidth="150.0" BorderPane.alignment="CENTER" />
+      <ComboBox prefWidth="150.0" promptText="선택하세요" BorderPane.alignment="CENTER" >
+      	
+      </ComboBox>
    </bottom>
 </BorderPane>

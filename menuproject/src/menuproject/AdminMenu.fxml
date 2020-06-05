@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="38.0" layoutY="44.0" mnemonicParsing="false" text="자장면" />
+            <Button layoutX="118.0" layoutY="44.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="54.0" text="짬뽕" />
+            <Button layoutX="38.0" layoutY="100.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="초밥" />
+            <Button layoutX="118.0" layoutY="100.0" mnemonicParsing="false" text="햄버거" />
+            <Button layoutX="69.0" layoutY="163.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="63.0" text="매출" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
