@@ -1,5 +1,7 @@
 package menuproject;
 
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +12,16 @@ public class SalesMain extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("salesChart.fxml"));
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		SalesDAO db = SalesDAO.getInstance();
+		if(db.connect()) {
+			List<SalesMenu> list = db.getMenuList();
+			
+			Parent root = FXMLLoader.load(getClass().getResource("salesChart.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		}	
 	}
 
 	public static void main(String[] args) {
