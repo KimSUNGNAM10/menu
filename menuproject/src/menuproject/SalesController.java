@@ -44,6 +44,8 @@ public class SalesController implements Initializable {
 //				buttonAddAction(arg0);
 //			}
 //		});
+		// TODO Auto-generated method stub
+		 
 	}
 //	
 //	public void buttonAddAction(ActionEvent ae) { 
