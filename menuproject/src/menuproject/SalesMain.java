@@ -14,7 +14,7 @@ public class SalesMain extends Application{
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
+	} //sdwqwesd
 
 	public static void main(String[] args) {
 		launch(args);
