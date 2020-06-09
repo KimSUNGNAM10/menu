@@ -70,13 +70,15 @@ public class SalesDAO {
 			return;
 	}
 	
+	//days=30 이면 30일치 더미데이터.
 	public void insertDummyData(int days) {
 		//특정 구간에 random개의 상품이 판매되는 더미 데이터 생성.
 		for(int i=0; i<days; ++i) {
-			double randOrderCount = Math.random() * 100;
-			//하루 0~100개의 주문이 들어옴
+			//하루당 0~100개 데이터 삽입
+			double randOrderCount = Math.random() * 100;	
 			for(int j=0; j<randOrderCount; ++j) {	
-				int randMenu = (int)(Math.random() * 10) + 1;
+				//메뉴는 메뉴번호  1~4번까지 랜덤하게 선택
+				int randMenu = (int)(Math.random() * 4) + 1;
 				String sql = String.format("insert into sales_history(order_no, sale_date, menu_id) "
 						+ "values(sales_history_seq.nextval, sysdate-%d, %d)"
 						, i, randMenu);
@@ -84,9 +86,9 @@ public class SalesDAO {
 				PreparedStatement pstmt;
 				try {
 					pstmt = conn.prepareStatement(sql);
-					ResultSet rs = pstmt.executeQuery();
 					int r = pstmt.executeUpdate();
 					System.out.println(r + "건 입력됨.");
+					pstmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -120,6 +122,7 @@ public class SalesDAO {
 	
 	//일별 판매기록 
 	public List<SalesHistory> getDayHistory(){
+		
 		return null;
 	}
 	

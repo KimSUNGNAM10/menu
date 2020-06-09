@@ -14,12 +14,16 @@ public class SalesMain extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		SalesDAO db = SalesDAO.getInstance();
 		if(db.connect()) {
-			List<SalesMenu> list = db.getMenuList();
+			db.insertDummyData(30);
 			
-			Parent root = FXMLLoader.load(getClass().getResource("salesChart.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			
+//			List<SalesMenu> list = db.getMenuList();
+//			
+//			Parent root = FXMLLoader.load(getClass().getResource("salesChart.fxml"));
+//			Scene scene = new Scene(root);
+//			primaryStage.setScene(scene);
+//			primaryStage.show();
+			
 			
 		}	
 	}
