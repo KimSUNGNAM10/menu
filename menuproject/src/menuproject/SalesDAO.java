@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 
 public class SalesDAO {
@@ -124,8 +127,8 @@ public class SalesDAO {
 	}
 	
 	//일별 판매기록 
-	public List<SalesHistory> getDayHistory(){
-		List<SalesHistory> list = new ArrayList<SalesHistory>();
+	public ObservableList<SalesHistory> getDayHistory(){
+		ObservableList<SalesHistory> list = FXCollections.observableArrayList();
 		
 		String sql  = "SELECT TO_CHAR(sale_date,'yyyymmdd') AS d, sum(price) AS sales" + 
 					" FROM sales_history" + 
@@ -146,7 +149,7 @@ public class SalesDAO {
 	}
 	
 	//월별 판매기록
-	public List<SalesHistory> getMonthHistory(){
+	public ObservableList<SalesHistory> getMonthHistory(){
 		String sql  = "SELECT TO_CHAR(sale_date,'yyyymm') AS d, sum(price) AS sales" + 
 				" FROM sales_history" + 
 				" GROUP BY TO_CHAR(sale_date,'yyyymm')" + 
