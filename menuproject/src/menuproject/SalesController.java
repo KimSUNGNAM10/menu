@@ -90,6 +90,9 @@ public class SalesController implements Initializable {
 		chartStage.initModality(Modality.WINDOW_MODAL);
 		chartStage.initOwner(btnChart.getScene().getWindow());
 
+		SalesDAO dao = SalesDAO.getInstance();
+		dao.connect();
+		ObservableList<SalesHistory> list = dao.getDayHistory();
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("SalesChart.fxml"));
 			LineChart barChart = (LineChart) parent.lookup("#lineChart");
@@ -97,8 +100,8 @@ public class SalesController implements Initializable {
 			XYChart.Series<String, Integer> seriesSales = new XYChart.Series<String, Integer>();
 			ObservableList<XYChart.Data<String, Integer>> datasSales = FXCollections.observableArrayList();
 
-			for (int i = 0; i < scores.size(); i++) {
-				datasSales.add(new XYChart.Data(scores.get(i).getSales(), scores.get(i)));
+			for (int i = 0; i < list.size(); i++) {
+				datasSales.add(new XYChart.Data(list.get(i).getDate(), list.get(i).getSales()));
 
 			}
 			seriesSales.setData(datasSales);

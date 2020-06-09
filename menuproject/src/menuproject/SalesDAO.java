@@ -27,6 +27,9 @@ public class SalesDAO {
 	}
 	
 	public boolean connect() {
+		if(conn != null)
+			return true;
+		
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -128,6 +131,9 @@ public class SalesDAO {
 	
 	//일별 판매기록 
 	public ObservableList<SalesHistory> getDayHistory(){
+		if(conn == null)
+			return null;
+		
 		ObservableList<SalesHistory> list = FXCollections.observableArrayList();
 		
 		String sql  = "SELECT TO_CHAR(sale_date,'yyyymmdd') AS d, sum(price) AS sales" + 
@@ -150,6 +156,9 @@ public class SalesDAO {
 	
 	//월별 판매기록
 	public ObservableList<SalesHistory> getMonthHistory(){
+		if(conn == null)
+			return null;
+					
 		String sql  = "SELECT TO_CHAR(sale_date,'yyyymm') AS d, sum(price) AS sales" + 
 				" FROM sales_history" + 
 				" GROUP BY TO_CHAR(sale_date,'yyyymm')" + 
