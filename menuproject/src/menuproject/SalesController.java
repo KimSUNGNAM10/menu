@@ -39,51 +39,51 @@ public class SalesController implements Initializable {
 				buttonChartAction(arg0);
 			}
 		});
-		
-		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				buttonAddAction(arg0);
-			}
-		});
+//		
+//		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent arg0) {
+//				buttonAddAction(arg0);
+//			}
+//		});
 	}
-	
-	public void buttonAddAction(ActionEvent ae) { 
-		Stage addStage = new Stage(StageStyle.UTILITY);
-		addStage.initModality(Modality.WINDOW_MODAL);
-		addStage.initOwner(btnOrder.getScene().getWindow());
-
-		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("AddForm.fxml"));
-			Scene scene = new Scene(parent);
-			addStage.setResizable(false);
-			addStage.setScene(scene);
-			addStage.show();
-
-			Button btnFormAdd = (Button) parent.lookup("#btnFormAdd");
-			btnFormAdd.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-					TextField txtName = (TextField) parent.lookup("#txtName");
-					TextField txtKorean = (TextField) parent.lookup("#txtKorean");
-					TextField txtMath = (TextField) parent.lookup("#txtMath");
-					TextField txtEnglish = (TextField) parent.lookup("#txtEnglish");
-
-					SalesHistory student = new SalesHistory(txtName.getText(), 
-							Integer.parseInt(txtKorean.getText())
-							);
-					scores.add(student);
-					addStage.close();
-				}
-
-			});
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+//	
+//	public void buttonAddAction(ActionEvent ae) { 
+//		Stage addStage = new Stage(StageStyle.UTILITY);
+//		addStage.initModality(Modality.WINDOW_MODAL);
+//		addStage.initOwner(btnOrder.getScene().getWindow());
+//
+//		try {
+//			Parent parent = FXMLLoader.load(getClass().getResource("AddForm.fxml"));
+//			Scene scene = new Scene(parent);
+//			addStage.setResizable(false);
+//			addStage.setScene(scene);
+//			addStage.show();
+//
+//			Button btnFormAdd = (Button) parent.lookup("#btnFormAdd");
+//			btnFormAdd.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				@Override
+//				public void handle(ActionEvent event) {
+//					TextField txtName = (TextField) parent.lookup("#txtName");
+//					TextField txtKorean = (TextField) parent.lookup("#txtKorean");
+//					TextField txtMath = (TextField) parent.lookup("#txtMath");
+//					TextField txtEnglish = (TextField) parent.lookup("#txtEnglish");
+//
+//					SalesHistory student = new SalesHistory(txtName.getText(), 
+//							Integer.parseInt(txtKorean.getText())
+//							);
+//					scores.add(student);
+//					addStage.close();
+//				}
+//
+//			});
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
 	
 	public void buttonChartAction(ActionEvent ae) {
 		Stage chartStage = new Stage(StageStyle.UTILITY);

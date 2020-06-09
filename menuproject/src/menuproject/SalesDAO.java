@@ -57,11 +57,28 @@ public class SalesDAO {
 		
 	}
 	
-	public void buyMenuFromId(int menuId) {
+	public void buyMenuFromId(int day, int menuId) {
 		if(conn == null)
 			return;
 		
-		//insert into sales_history(order_no, menu_id) values(sales_history_seq.NEXTVAL, 1);
+		String sql = String.format("insert into sales_history(order_no, sale_date, menu_id, price) "
+				+ "values(sales_history_seq.nextval, "
+				+ "sysdate -%d, "
+				+ "%d, "
+				+ "(SELECT price FROM menu WHERE menu_id = %d))"
+				, day, menuId, menuId);
+		
+		PreparedStatement pstmt;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int r = pstmt.executeUpdate();
+			System.out.println(r + "건 입력됨.");
+			pstmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	
@@ -79,21 +96,7 @@ public class SalesDAO {
 			for(int j=0; j<randOrderCount; ++j) {	
 				//메뉴는 메뉴번호  1~4번까지 랜덤하게 선택
 				int randMenu = (int)(Math.random() * 4) + 1;
-				String sql = String.format("insert into sales_history(order_no, sale_date, menu_id) "
-						+ "values(sales_history_seq.nextval, sysdate-%d, %d)"
-						, i, randMenu);
-				
-				PreparedStatement pstmt;
-				try {
-					pstmt = conn.prepareStatement(sql);
-					int r = pstmt.executeUpdate();
-					System.out.println(r + "건 입력됨.");
-					pstmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				buyMenuFromId(i, randMenu);
 			}
 		}
 	}
@@ -122,12 +125,32 @@ public class SalesDAO {
 	
 	//일별 판매기록 
 	public List<SalesHistory> getDayHistory(){
+		List<SalesHistory> list = new ArrayList<SalesHistory>();
 		
-		return null;
+		String sql  = "SELECT TO_CHAR(sale_date,'yyyymmdd') AS d, sum(price) AS sales" + 
+					" FROM sales_history" + 
+					" GROUP BY TO_CHAR(sale_date,'yyyymmdd')" + 
+					" ORDER BY TO_CHAR(sale_date, 'yyyymmdd')"; 
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				SalesHistory salesHistory = new SalesHistory(rs.getString("d"), rs.getInt("sales"));
+				list.add(salesHistory);
+				System.out.println(salesHistory.getDate() + " " + salesHistory.getSales());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	//월별 판매기록
 	public List<SalesHistory> getMonthHistory(){
+		String sql  = "SELECT TO_CHAR(sale_date,'yyyymm') AS d, sum(price) AS sales" + 
+				" FROM sales_history" + 
+				" GROUP BY TO_CHAR(sale_date,'yyyymm')" + 
+				" ORDER BY TO_CHAR(sale_date, 'yyyymm')"; 
 		return null;
 	}
 	
