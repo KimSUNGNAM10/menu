@@ -16,17 +16,15 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import stages_pack.Student;
 
 
 public class SalesController implements Initializable {
 	@FXML
 	Button btnChart, btnOrder;
-
+ 
 	ObservableList<SalesHistory> scores;
 
 	@Override
