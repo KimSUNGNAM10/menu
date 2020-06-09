@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <LineChart BorderPane.alignment="CENTER">
         <xAxis>
@@ -21,9 +21,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <RadioButton mnemonicParsing="false" text="일별" />
-            <RadioButton mnemonicParsing="false" text="주별" />
-            <RadioButton mnemonicParsing="false" text="월별" />
+            <Label alignment="CENTER" prefHeight="26.0" prefWidth="105.0" text="일매출" />
          </children>
       </HBox>
    </top>
