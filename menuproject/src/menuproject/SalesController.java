@@ -90,7 +90,7 @@ public class SalesController implements Initializable {
 		chartStage.initModality(Modality.WINDOW_MODAL);
 		chartStage.initOwner(btnChart.getScene().getWindow());
 
-		try {
+		try {//sdsd
 			Parent parent = FXMLLoader.load(getClass().getResource("SalesChart.fxml"));
 			LineChart barChart = (LineChart) parent.lookup("#lineChart");
 
