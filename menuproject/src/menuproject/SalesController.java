@@ -45,7 +45,7 @@ public class SalesController implements Initializable {
 //			public void handle(ActionEvent arg0) {
 //				buttonAddAction(arg0);
 //			}
-//		});sadasdasd
+//		});
 	}
 //	
 //	public void buttonAddAction(ActionEvent ae) { 
@@ -85,12 +85,12 @@ public class SalesController implements Initializable {
 //	}
 //	
 	
-	public void buttonChartAction(ActionEvent ae) {
+	public void buttonChartAction(ActionEvent ae) { //sdsdss
 		Stage chartStage = new Stage(StageStyle.UTILITY);
 		chartStage.initModality(Modality.WINDOW_MODAL);
 		chartStage.initOwner(btnChart.getScene().getWindow());
 
-		try {//sdsd
+		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("SalesChart.fxml"));
 			LineChart barChart = (LineChart) parent.lookup("#lineChart");
 
