@@ -16,76 +16,74 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
 public class SalesController implements Initializable {
 	@FXML
 	Button btnChart, btnOrder;
- 
+
 	ObservableList<SalesHistory> scores;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		scores = FXCollections.observableArrayList();
-		
+
 		btnChart.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				buttonChartAction(arg0);
 			}
 		});
-//		
-//		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent arg0) {
-//				buttonAddAction(arg0);
-//			}
-//		});
-		// TODO Auto-generated method stub
-		 
-	}
-//	
-//	public void buttonAddAction(ActionEvent ae) { 
-//		Stage addStage = new Stage(StageStyle.UTILITY);
-//		addStage.initModality(Modality.WINDOW_MODAL);
-//		addStage.initOwner(btnOrder.getScene().getWindow());
-//
-//		try {
-//			Parent parent = FXMLLoader.load(getClass().getResource("AddForm.fxml"));
-//			Scene scene = new Scene(parent);
-//			addStage.setResizable(false);
-//			addStage.setScene(scene);
-//			addStage.show();
-//
-//			Button btnFormAdd = (Button) parent.lookup("#btnFormAdd");
-//			btnFormAdd.setOnAction(new EventHandler<ActionEvent>() {
-//
-//				@Override
-//				public void handle(ActionEvent event) {
-//					TextField txtName = (TextField) parent.lookup("#txtName");
-//					TextField txtKorean = (TextField) parent.lookup("#txtKorean");
-//					TextField txtMath = (TextField) parent.lookup("#txtMath");
-//					TextField txtEnglish = (TextField) parent.lookup("#txtEnglish");
-//
-//					SalesHistory student = new SalesHistory(txtName.getText(), 
-//							Integer.parseInt(txtKorean.getText())
-//							);
-//					scores.add(student);
-//					addStage.close();
-//				}
-//
-//			});
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
+		
+		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				buttonOrderAction(event);
+			}
+			
+		});
 	
-	public void buttonChartAction(ActionEvent ae) { //sdsdss
+	}
+
+	public void buttonOrderAction(ActionEvent ae) {
+		Stage addStage = new Stage(StageStyle.UTILITY);
+		addStage.initModality(Modality.WINDOW_MODAL);
+		addStage.initOwner(btnOrder.getScene().getWindow());
+
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("Order.fxml"));
+			Scene scene = new Scene(parent);
+			addStage.setResizable(false);
+			addStage.setScene(scene);
+			addStage.show();
+
+			Button btnOrder = (Button) parent.lookup("#btnOrder"); // lookup은 btnFormAdd하위에 있는 id를 불어올때, #id값가져올때
+			btnOrder.setOnAction(new EventHandler<ActionEvent>() {
+
+				@Override
+				public void handle(ActionEvent event) {
+					Button btnorder = (Button) parent.lookup("#order");
+					Button btnordercancel = (Button) parent.lookup("#ordercancel");
+
+					SalesHistory student = new SalesHistory(btnorder.getText(),
+							Integer.parseInt(btnordercancel.getText()));
+
+					scores.add(student);
+					addStage.close();
+				}
+
+			});
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void buttonChartAction(ActionEvent ae) { // sdsdss
 		Stage chartStage = new Stage(StageStyle.UTILITY);
 		chartStage.initModality(Modality.WINDOW_MODAL);
 		chartStage.initOwner(btnChart.getScene().getWindow());
@@ -105,7 +103,7 @@ public class SalesController implements Initializable {
 
 			}
 			seriesSales.setData(datasSales);
-			seriesSales.setName("");
+			seriesSales.setName("매출");
 
 			barChart.setData(FXCollections.observableArrayList(seriesSales));
 

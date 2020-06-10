@@ -13,11 +13,9 @@ public class SalesMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-//		//더미 데이터 10일치 삽입.
+		//더미 데이터 10일치 삽입.
 //		SalesDAO.getInstance().connect();
-//		//SalesDAO.getInstance().insertDummyData(10);
-//		List<SalesHistory> list = SalesDAO.getInstance().getDayHistory();
-//		System.out.println(list.size());
+//		SalesDAO.getInstance().insertDummyData(10);
 
 
 		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));

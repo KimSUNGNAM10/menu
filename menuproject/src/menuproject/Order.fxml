@@ -10,8 +10,8 @@
    <center>
       <Pane prefHeight="107.0" prefWidth="210.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="38.0" layoutY="42.0" mnemonicParsing="false" text="주문" />
-            <Button layoutX="115.0" layoutY="42.0" mnemonicParsing="false" text="주문취소" />
+            <Button layoutX="38.0" layoutY="42.0" mnemonicParsing="false" text="주문" fx:id="order"/>
+            <Button layoutX="115.0" layoutY="42.0" mnemonicParsing="false" text="주문취소" fx:id="ordercancel"/>
          </children>
       </Pane>
    </center>

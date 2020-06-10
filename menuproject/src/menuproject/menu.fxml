@@ -7,28 +7,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.Image?>
 
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuproject.SalesController">
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+			fx:controller="menuproject.SalesController">
    <children>
       <Pane prefHeight="597.0" prefWidth="511.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
             	<image>
-            		<Image url="@../images/F4.jpg" />
+            		<Image url="@../images/F4.jpg" fx:id="food4"/>
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="288.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F1.jpg" />
+            		<Image url="@../images/F1.jpg" fx:id="food1"/>
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F2.jpg" />
+            		<Image url="@../images/F2.jpg" fx:id="food2"/>
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="279.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F3.jpg" />
+            		<Image url="@../images/F3.jpg" fx:id="food3"/>
             	</image>
             </ImageView>
             <Label alignment="CENTER" layoutX="104.0" layoutY="200.0" prefHeight="25.0" prefWidth="60.0" text="3000원" />
