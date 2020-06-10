@@ -105,7 +105,7 @@ public class SalesController implements Initializable {
 
 			}
 			seriesSales.setData(datasSales);
-			seriesSales.setName("");
+			seriesSales.setName("매출");
 
 			barChart.setData(FXCollections.observableArrayList(seriesSales));
 
