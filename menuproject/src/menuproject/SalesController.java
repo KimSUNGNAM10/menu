@@ -16,14 +16,16 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 public class SalesController implements Initializable {
 	@FXML
-	Button btnChart, btnOrder;
+	Button btnChart, btnOrder, btnAdd;
 
 	ObservableList<SalesHistory> scores;
 
@@ -47,8 +49,51 @@ public class SalesController implements Initializable {
 			
 		});
 	
+		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				buttonAddAction(arg0);
+			}
+		});
 	}
 
+		public void buttonAddAction(ActionEvent ae) { // window style 지정
+			Stage addStage = new Stage(StageStyle.UTILITY);
+			addStage.initModality(Modality.WINDOW_MODAL);
+			addStage.initOwner(btnAdd.getScene().getWindow());
+
+			try {
+				Parent parent = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
+				Scene scene = new Scene(parent);
+				addStage.setResizable(false);
+				addStage.setScene(scene);
+				addStage.show();
+
+				Button btnMenuAdd = (Button) parent.lookup("#btnok");
+				btnMenuAdd.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						TextField txtImageRoute = (TextField) parent.lookup("#imageRoute");
+						TextField txtNewMenuName = (TextField) parent.lookup("#newMenuName");
+						TextField txtNewPrice = (TextField) parent.lookup("#newPrice");
+						
+
+						SalesHistory sales = new SalesHistory(
+								Integer.parseInt(txtImageRoute.getText()), 
+								Integer.parseInt(txtNewMenuName.getText()),
+								Integer.parseInt(txtNewPrice.getText()));
+						scores.add(sales);
+						addStage.close();
+					}
+
+				});
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	public void buttonOrderAction(ActionEvent ae) {
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);

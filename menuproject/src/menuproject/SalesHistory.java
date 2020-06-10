@@ -11,7 +11,7 @@ public class SalesHistory {
 		this.date = new SimpleStringProperty(date);
 		this.sales = new SimpleIntegerProperty(sales);
 	}
-	
+
 
 	public String getDate() {
 		return date.get();
