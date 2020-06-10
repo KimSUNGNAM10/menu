@@ -7,43 +7,41 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.Image?>
 
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-			fx:controller="menuproject.SalesController">
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuproject.SalesController">
    <children>
       <Pane prefHeight="597.0" prefWidth="511.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
             	<image>
-            		<Image url="@../images/F4.jpg" fx:id="food4"/>
+            		<Image fx:id="food4" url="@../images/F4.jpg" />
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="288.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F1.jpg" fx:id="food1"/>
+            		<Image fx:id="food1" url="@../images/F1.jpg" />
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F2.jpg" fx:id="food2"/>
+            		<Image fx:id="food2" url="@../images/F2.jpg" />
             	</image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="279.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
             <image>
-            		<Image url="@../images/F3.jpg" fx:id="food3"/>
+            		<Image fx:id="food3" url="@../images/F3.jpg" />
             	</image>
             </ImageView>
             <Label alignment="CENTER" layoutX="104.0" layoutY="200.0" prefHeight="25.0" prefWidth="60.0" text="3000원" />
             <Label alignment="CENTER" layoutX="336.0" layoutY="203.0" prefHeight="20.0" prefWidth="60.0" text="8000원" />
             <Label alignment="CENTER" layoutX="104.0" layoutY="424.0" prefHeight="20.0" prefWidth="60.0" text="5000원" />
             <Label alignment="CENTER" layoutX="337.0" layoutY="424.0" prefHeight="20.0" prefWidth="60.0" text="4000원" />
-            <Button alignment="CENTER" layoutX="84.0" layoutY="500.0"
-            		 prefHeight="44.0" prefWidth="92.0" text="매출" fx:id="btnChart"/>
+            <Button fx:id="btnChart" alignment="CENTER" layoutX="84.0" layoutY="500.0" prefHeight="44.0" prefWidth="92.0" text="매출" />
             <Label layoutX="92.0" layoutY="183.0" text="토마토스파게티" />
             <Label alignment="CENTER" layoutX="351.0" layoutY="183.0" prefHeight="15.0" prefWidth="31.0" text="백반" />
             <Label layoutX="110.0" layoutY="401.0" text="모둠초밥" />
             <Label layoutX="342.0" layoutY="401.0" text="스테이크" />
-            <Button alignment="CENTER" layoutX="291.0" layoutY="505.0" prefHeight="34.0"
-            	 	prefWidth="60.0" text="주문" fx:id="btnOrder"/>
+            <Button fx:id="btnOrder" alignment="CENTER" layoutX="360.0" layoutY="505.0" prefHeight="34.0" prefWidth="60.0" text="주문" />
+            <Button layoutX="242.0" layoutY="505.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" text="추가" />
          </children>
       </Pane>
    </children>

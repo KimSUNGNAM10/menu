@@ -1,5 +1,8 @@
 package menuproject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,20 +46,35 @@ public class SalesDAO {
 	}
 	
 	//메뉴이름, 가격을 받아서 메뉴를 추가함.
-	public void insertMenu(String menuName, int price) {
-		String sql = "insert into menu values(menu_id, name, price) values(menu_seq.NEXTVAL, ?, ?)";
+	public boolean insertMenu(String menuName, int price, String path) {
+		if(conn == null)
+			return false;
 		
+		FileInputStream fis;
+		File file = new File(path);
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		
+		
+		String sql = "INSERT INTO menu(menu_id, name, price, image) "
+				+ "values(menu_seq.nextval, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, menuName);
 			pstmt.setInt(2, price);
-			
+			pstmt.setBinaryStream(3, fis, file.length());
 			int r = pstmt.executeUpdate();
+			pstmt.close();
 			System.out.println(r + "건 입력됨.");
+			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		return false;
 	}
 	
 	public void deleteMenu(int menuId) {
@@ -69,7 +87,7 @@ public class SalesDAO {
 		
 		String sql = String.format("insert into sales_history(order_no, sale_date, menu_id, price) "
 				+ "values(sales_history_seq.nextval, "
-				+ "sysdate -%d, "
+				+ "sysdate-%d, "
 				+ "%d, "
 				+ "(SELECT price FROM menu WHERE menu_id = %d))"
 				, day, menuId, menuId);
@@ -116,10 +134,12 @@ public class SalesDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
-				SalesMenu menu = new SalesMenu(rs.getInt("menu_id"), 
+				SalesMenu menu = new SalesMenu( rs.getInt("menu_id"), 
 												rs.getString("name"),
-												rs.getInt("price"));
+												rs.getInt("price"),
+												rs.getBinaryStream("image"));
 				list.add(menu);
 			}
 		} catch (SQLException e) {
