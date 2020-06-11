@@ -106,7 +106,8 @@ public class SalesController implements Initializable {
 						
 						SalesDAO instance = SalesDAO.getInstance();
 						instance.connect();
-						instance.insertMenu(txtMenuName.getText(), Integer.parseInt(txtPrice.getText()), txtRoute.getText());
+						instance.insertMenu(txtMenuName.getText(),
+								Integer.parseInt(txtPrice.getText()), txtRoute.getText());
 						
 					}
 
@@ -129,7 +130,7 @@ public class SalesController implements Initializable {
 			addStage.setScene(scene);
 			addStage.show();
 
-			Button btnOrder = (Button) parent.lookup("#btnOrder"); // lookup은 btnFormAdd하위에 있는 id를 불어올때, #id값가져올때
+			Button btnOrder = (Button) parent.lookup("#btnOrder");
 			btnOrder.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
@@ -151,7 +152,7 @@ public class SalesController implements Initializable {
 		}
 	}
 
-	public void buttonChartAction(ActionEvent ae) { // sdsdss
+	public void buttonChartAction(ActionEvent ae) { 
 		Stage chartStage = new Stage(StageStyle.UTILITY);
 		chartStage.initModality(Modality.WINDOW_MODAL);
 		chartStage.initOwner(btnChart.getScene().getWindow());
