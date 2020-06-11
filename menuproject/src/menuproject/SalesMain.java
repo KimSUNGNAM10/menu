@@ -44,7 +44,7 @@ public class SalesMain extends Application {
 		dao.insertDummyData(10);
 
 	}
-
+ 
 	void testInsertMenu(Stage stage) {
 		//파일선택
 		FileChooser fileChooser = new FileChooser();
