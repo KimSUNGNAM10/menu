@@ -31,25 +31,23 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.FileChooser.ExtensionFilter;
-import menuproject.SalesMain.SalesButtonEvent;
-
 
 public class SalesController implements Initializable {
 	@FXML
 	Button btnChart, btnOrder, btnAdd;
-	
+
 	@FXML
 	ScrollPane scrPane;
-	
+
 	@FXML
 	VBox vbox_menu;
-	
+
 	ObservableList<SalesHistory> scores;
 
 	void initShowMenu() {
 		SalesDAO instance = SalesDAO.getInstance();
 		instance.connect();
-		
+
 		HBox hbox = null;
 		List<SalesMenu> listMenu = instance.getMenuList();
 		for (int i = 0; i < listMenu.size(); ++i) {
@@ -65,7 +63,7 @@ public class SalesController implements Initializable {
 
 			btn.setContentDisplay(ContentDisplay.TOP);
 			btn.setAlignment(Pos.BOTTOM_CENTER);
-			
+
 //			btn.setOnAction(new SalesButtonEvent(menu));
 
 			img.setFitWidth(200);
@@ -74,28 +72,29 @@ public class SalesController implements Initializable {
 
 		}
 	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		scores = FXCollections.observableArrayList();
 
 		initShowMenu();
-		
+
 		btnChart.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				buttonChartAction(arg0);
 			}
 		});
-		
+
 		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				buttonOrderAction(event);
 			}
-			
+
 		});
-	
+
 		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -104,65 +103,66 @@ public class SalesController implements Initializable {
 		});
 	}
 
-		public void buttonAddAction(ActionEvent ae) { // window style 지정
-			Stage addStage = new Stage(StageStyle.UTILITY);
-			addStage.initModality(Modality.WINDOW_MODAL);
-			addStage.initOwner(btnAdd.getScene().getWindow());
+	public void buttonAddAction(ActionEvent ae) { // window style 지정
+		Stage addStage = new Stage(StageStyle.UTILITY);
+		addStage.initModality(Modality.WINDOW_MODAL);
+		addStage.initOwner(btnAdd.getScene().getWindow());
 
-			try {
-				Parent parent = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
-				Scene scene = new Scene(parent);
-				addStage.setResizable(false);
-				addStage.setScene(scene);
-				addStage.show();
+		try {
+			Parent parent = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
+			Scene scene = new Scene(parent);
+			addStage.setResizable(false);
+			addStage.setScene(scene);
+			addStage.show();
 
-				
-				Button btnRouteAdd = (Button) parent.lookup("#route");
-				btnRouteAdd.setOnAction(new EventHandler<ActionEvent>() {
+			Button btnRouteAdd = (Button) parent.lookup("#route");
+			btnRouteAdd.setOnAction(new EventHandler<ActionEvent>() {
 
-					@Override
-					public void handle(ActionEvent event) {
-						//파일선택
-						FileChooser fileChooser = new FileChooser();
-						fileChooser.setTitle("Open Resource File");
-						fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-						File file = fileChooser.showOpenDialog(addStage);
-						if (file != null) {
-							//파일의 경로
-							String path = file.getPath();
-							
-							TextField txtRoute = (TextField) parent.lookup("#txtRoute");
-							txtRoute.setText(path);
-							
-						}
-					}
-				});
-				
-				Button btnMenuAdd = (Button) parent.lookup("#btnok");
-				btnMenuAdd.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					// 파일선택
+					FileChooser fileChooser = new FileChooser();
+					fileChooser.setTitle("Open Resource File");
+					fileChooser.getExtensionFilters()
+							.addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+					File file = fileChooser.showOpenDialog(addStage);
+					if (file != null) {
+						// 파일의 경로
+						String path = file.getPath();
 
-					@Override
-					public void handle(ActionEvent event) {
 						TextField txtRoute = (TextField) parent.lookup("#txtRoute");
-						TextField txtMenuName = (TextField) parent.lookup("#txtMenuName");
-						TextField txtPrice = (TextField) parent.lookup("#txtPrice");
-						
-						SalesDAO instance = SalesDAO.getInstance();
-						instance.connect();
-						if(instance.insertMenu(txtMenuName.getText(), Integer.parseInt(txtPrice.getText()), txtRoute.getText())){
-							System.out.println("메뉴추가 성공");
-						}else{
-							System.out.println("메뉴추가 실패");
-						}
+						txtRoute.setText(path);
+
 					}
+				}
+			});
 
-				});
+			Button btnMenuAdd = (Button) parent.lookup("#btnok");
+			btnMenuAdd.setOnAction(new EventHandler<ActionEvent>() {
 
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+				@Override
+				public void handle(ActionEvent event) {
+					TextField txtRoute = (TextField) parent.lookup("#txtRoute");
+					TextField txtMenuName = (TextField) parent.lookup("#txtMenuName");
+					TextField txtPrice = (TextField) parent.lookup("#txtPrice");
+
+					SalesDAO instance = SalesDAO.getInstance();
+					instance.connect();
+					if (instance.insertMenu(txtMenuName.getText(), Integer.parseInt(txtPrice.getText()),
+							txtRoute.getText())) {
+						System.out.println("메뉴추가 성공");
+					} else {
+						System.out.println("메뉴추가 실패");
+					}
+				}
+
+			});
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	
+	}
+
 	public void buttonOrderAction(ActionEvent ae) {
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);
