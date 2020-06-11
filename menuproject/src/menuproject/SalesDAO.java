@@ -11,8 +11,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JPanel;
+
+import com.sun.javafx.tk.Toolkit;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 
 
@@ -190,4 +195,5 @@ public class SalesDAO {
 	public List<SalesHistory> getYearHistory(){
 		return null;
 	}
+
 }
