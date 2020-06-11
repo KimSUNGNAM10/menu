@@ -86,15 +86,6 @@ public class SalesController implements Initializable {
 			}
 		});
 
-		btnOrder.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				buttonOrderAction(event);
-			}
-
-		});
-
 		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {

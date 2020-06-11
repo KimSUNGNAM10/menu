@@ -98,6 +98,9 @@ public class SalesMain extends Application {
 			SalesMenu menu = listMenu.get(i);
 			ImageView img = new ImageView(menu.getImage());
 			Button btn = new Button(menu.toString(), img);
+			
+			
+			
 
 			btn.setContentDisplay(ContentDisplay.TOP);
 			btn.setAlignment(Pos.BOTTOM_CENTER);
@@ -121,11 +124,10 @@ public class SalesMain extends Application {
 		SalesDAO instance = SalesDAO.getInstance();
 		if(instance.connect()) {
 			System.out.println("접속 성공");
-		}else {
+		} else {
 			System.out.println("접속 실패");
 		}
 		
-
 		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
