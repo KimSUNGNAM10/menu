@@ -1,5 +1,6 @@
 package menuproject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,17 +17,23 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 
 public class SalesController implements Initializable {
 	@FXML
 	Button btnChart, btnOrder, btnAdd;
-
+	
+	@FXML
+	ScrollPane scrPane;
+	
 	ObservableList<SalesHistory> scores;
 
 	@Override
@@ -69,22 +76,44 @@ public class SalesController implements Initializable {
 				addStage.setScene(scene);
 				addStage.show();
 
+				
+				Button btnRouteAdd = (Button) parent.lookup("#route");
+				btnRouteAdd.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						//파일선택
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.setTitle("Open Resource File");
+						fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+						File file = fileChooser.showOpenDialog(addStage);
+						if (file != null) {
+							//파일의 경로
+							String path = file.getPath();
+							
+							TextField txtRoute = (TextField) parent.lookup("#txtRoute");
+							txtRoute.setText(path);
+							
+						}
+					}
+				});
+				
 				Button btnMenuAdd = (Button) parent.lookup("#btnok");
 				btnMenuAdd.setOnAction(new EventHandler<ActionEvent>() {
 
 					@Override
 					public void handle(ActionEvent event) {
-						TextField txtImageRoute = (TextField) parent.lookup("#imageRoute");
-						TextField txtNewMenuName = (TextField) parent.lookup("#newMenuName");
-						TextField txtNewPrice = (TextField) parent.lookup("#newPrice");
-						 
-						System.out.println("asd");
-//						SalesHistory sales = new SalesHistory(
-//								Integer.parseInt(txtImageRoute.getText()), 
-//								Integer.parseInt(txtNewMenuName.getText()),
-//								Integer.parseInt(txtNewPrice.getText()));
-//						scores.add(sales);
-//						addStage.close();
+						TextField txtRoute = (TextField) parent.lookup("#txtRoute");
+						TextField txtMenuName = (TextField) parent.lookup("#txtMenuName");
+						TextField txtPrice = (TextField) parent.lookup("#txtPrice");
+						
+						SalesDAO instance = SalesDAO.getInstance();
+						instance.connect();
+						if(instance.insertMenu(txtMenuName.getText(), Integer.parseInt(txtPrice.getText()), txtRoute.getText())){
+							System.out.println("메뉴추가 성공");
+						}else{
+							System.out.println("메뉴추가 실패");
+						}
 					}
 
 				});
