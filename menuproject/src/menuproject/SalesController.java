@@ -44,17 +44,17 @@ public class SalesController implements Initializable {
 	ObservableList<SalesHistory> scores;
 
 	class SalesButtonEvent implements EventHandler<ActionEvent> {
-		private SalesMenu menu = null;
+		private SalesMenu selMenu = null;
 		
 		SalesButtonEvent(SalesMenu menu){
-			this.menu = menu;
+			this.selMenu = menu;
 		}
 		
 		@Override
 		public void handle(ActionEvent event) {
-			if (menu == null)
+			if (selMenu == null)
 				return;
-			buttonOrderAction(event);
+			buttonOrderAction(event, selMenu);
 		}
 
 	}
@@ -63,6 +63,11 @@ public class SalesController implements Initializable {
 		SalesDAO instance = SalesDAO.getInstance();
 		instance.connect();
 
+		//hbox들 삭제.
+		while(vbox_menu.getChildren().size() > 0) {
+			vbox_menu.getChildren().remove(0);
+		}
+		
 		HBox hbox = null;
 		List<SalesMenu> listMenu = instance.getMenuList();
 		for (int i = 0; i < listMenu.size(); ++i) {
@@ -159,6 +164,7 @@ public class SalesController implements Initializable {
 					} else {
 						System.out.println("메뉴추가 실패");
 					}
+					initShowMenu();
 				}
 
 			});
@@ -168,7 +174,7 @@ public class SalesController implements Initializable {
 		}
 	}
 
-	public void buttonOrderAction(ActionEvent ae) {
+	public void buttonOrderAction(ActionEvent ae, SalesMenu selMenu) {
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);
 		addStage.initOwner(btnChart.getScene().getWindow());
@@ -181,20 +187,14 @@ public class SalesController implements Initializable {
 			addStage.show();
 
 			Button btnOrder = (Button) parent.lookup("#order");
-			btnOrder.setOnAction(new EventHandler<ActionEvent>() {
-
-				@Override
-				public void handle(ActionEvent event) {
-//					Button btnorder = (Button) parent.lookup("#order");
-//					Button btnordercancel = (Button) parent.lookup("#ordercancel");
-//
-//					SalesHistory student = new SalesHistory(btnorder.getText(),
-//							Integer.parseInt(btnordercancel.getText()));
-//
-//					scores.add(student);
-//					addStage.close();
-				}
-
+			btnOrder.setOnAction((evt)-> {				
+				SalesDAO.getInstance().buyMenuFromId(0, selMenu.menuId);
+				addStage.close();
+			});
+			
+			Button btnOrderCancel = (Button) parent.lookup("#ordercancel");
+			btnOrderCancel.setOnAction((evt)->{
+				addStage.close();
 			});
 
 		} catch (IOException e) {

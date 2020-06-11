@@ -9,7 +9,7 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuproject.SalesController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url(images/123.jpg);">
+      <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url(images/F1234.jpg);">
          <children>
             <ScrollPane fx:id="scrPane" layoutX="22.0" layoutY="14.0" prefHeight="439.0" prefWidth="757.0">
                <content>
@@ -18,7 +18,7 @@
           
             <Button fx:id="btnChart" alignment="CENTER" layoutX="250.0" layoutY="500.0" prefHeight="44.0" prefWidth="92.0" text="매출" />
             <Button fx:id="btnAdd" layoutX="479.0" layoutY="500.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="104.0" text="메뉴추가" />
-         
+
          </children>
       </Pane>
    </children>
