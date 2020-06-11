@@ -22,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,7 +33,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class SalesController implements Initializable {
 	@FXML
-	Button btnChart, btnOrder, btnAdd;
+	Button btnChart, btnAdd;
 
 	@FXML
 	ScrollPane scrPane;
@@ -55,8 +54,7 @@ public class SalesController implements Initializable {
 		public void handle(ActionEvent event) {
 			if (menu == null)
 				return;
-			
-			System.out.println(menu.name);
+			buttonOrderAction(event);
 		}
 
 	}
@@ -173,28 +171,28 @@ public class SalesController implements Initializable {
 	public void buttonOrderAction(ActionEvent ae) {
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);
-		addStage.initOwner(btnOrder.getScene().getWindow());
+		addStage.initOwner(btnChart.getScene().getWindow());
 
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("Order.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("oorder.fxml"));
 			Scene scene = new Scene(parent);
 			addStage.setResizable(false);
 			addStage.setScene(scene);
 			addStage.show();
 
-			Button btnOrder = (Button) parent.lookup("#btnOrder");
+			Button btnOrder = (Button) parent.lookup("#order");
 			btnOrder.setOnAction(new EventHandler<ActionEvent>() {
 
 				@Override
 				public void handle(ActionEvent event) {
-					Button btnorder = (Button) parent.lookup("#order");
-					Button btnordercancel = (Button) parent.lookup("#ordercancel");
-
-					SalesHistory student = new SalesHistory(btnorder.getText(),
-							Integer.parseInt(btnordercancel.getText()));
-
-					scores.add(student);
-					addStage.close();
+//					Button btnorder = (Button) parent.lookup("#order");
+//					Button btnordercancel = (Button) parent.lookup("#ordercancel");
+//
+//					SalesHistory student = new SalesHistory(btnorder.getText(),
+//							Integer.parseInt(btnordercancel.getText()));
+//
+//					scores.add(student);
+//					addStage.close();
 				}
 
 			});
