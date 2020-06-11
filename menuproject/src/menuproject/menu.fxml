@@ -15,7 +15,7 @@
                <content>
                   <VBox fx:id="vbox_menu" prefHeight="434.0" prefWidth="748.0" />
                </content></ScrollPane>
-         
+          
             <Button fx:id="btnChart" alignment="CENTER" layoutX="211.0" layoutY="500.0" prefHeight="44.0" prefWidth="92.0" text="매출" />
             <Button fx:id="btnOrder" alignment="CENTER" layoutX="487.0" layoutY="505.0" prefHeight="34.0" prefWidth="60.0" text="주문" />
             <Button fx:id="btnAdd" layoutX="369.0" layoutY="505.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" text="추가" />
