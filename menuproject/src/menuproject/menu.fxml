@@ -41,7 +41,7 @@
             <Label layoutX="110.0" layoutY="401.0" text="모둠초밥" />
             <Label layoutX="342.0" layoutY="401.0" text="스테이크" />
             <Button fx:id="btnOrder" alignment="CENTER" layoutX="360.0" layoutY="505.0" prefHeight="34.0" prefWidth="60.0" text="주문" />
-            <Button layoutX="242.0" layoutY="505.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" text="추가" fx:1d="btnAdd"/>
+            <Button layoutX="242.0" layoutY="505.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" text="추가" fx:id="btnAdd"/>
          </children>
       </Pane>
    </children>

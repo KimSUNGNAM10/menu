@@ -77,14 +77,14 @@ public class SalesController implements Initializable {
 						TextField txtImageRoute = (TextField) parent.lookup("#imageRoute");
 						TextField txtNewMenuName = (TextField) parent.lookup("#newMenuName");
 						TextField txtNewPrice = (TextField) parent.lookup("#newPrice");
-						
-
-						SalesHistory sales = new SalesHistory(
-								Integer.parseInt(txtImageRoute.getText()), 
-								Integer.parseInt(txtNewMenuName.getText()),
-								Integer.parseInt(txtNewPrice.getText()));
-						scores.add(sales);
-						addStage.close();
+						 
+						System.out.println("asd");
+//						SalesHistory sales = new SalesHistory(
+//								Integer.parseInt(txtImageRoute.getText()), 
+//								Integer.parseInt(txtNewMenuName.getText()),
+//								Integer.parseInt(txtNewPrice.getText()));
+//						scores.add(sales);
+//						addStage.close();
 					}
 
 				});

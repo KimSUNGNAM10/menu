@@ -81,9 +81,12 @@ public class SalesMain extends Application {
 		ScrollPane scrp = new ScrollPane();
 		scrp.setPrefSize(100, 400);
 		scrp.setContent(vb);
-
 		root.getChildren().add(scrp);
-
+		
+		Button btnAddMenu = new Button("메뉴추가");
+		Button btnShowChart = new Button("매출차트");
+		root.getChildren().add(btnAddMenu);
+		
 		HBox hbox = null;
 		for (int i = 0; i < listMenu.size(); ++i) {
 			if (i % 3 == 0) {
@@ -98,9 +101,6 @@ public class SalesMain extends Application {
 
 			btn.setContentDisplay(ContentDisplay.TOP);
 			btn.setAlignment(Pos.BOTTOM_CENTER);
-
-			
-			;
 			
 			btn.setOnAction(new SalesButtonEvent(menu));
 
@@ -118,7 +118,8 @@ public class SalesMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	
+		//testInsertMenu(primaryStage);
+//		testCodeStage(primaryStage);
 		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
