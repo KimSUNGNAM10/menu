@@ -63,6 +63,11 @@ public class SalesController implements Initializable {
 		SalesDAO instance = SalesDAO.getInstance();
 		instance.connect();
 
+		//hbox들 삭제.
+		while(vbox_menu.getChildren().size() > 0) {
+			vbox_menu.getChildren().remove(0);
+		}
+		
 		HBox hbox = null;
 		List<SalesMenu> listMenu = instance.getMenuList();
 		for (int i = 0; i < listMenu.size(); ++i) {
@@ -159,6 +164,7 @@ public class SalesController implements Initializable {
 					} else {
 						System.out.println("메뉴추가 실패");
 					}
+					initShowMenu();
 				}
 
 			});
@@ -186,7 +192,7 @@ public class SalesController implements Initializable {
 				addStage.close();
 			});
 			
-			Button btnOrderCancel = (Button) parent.lookup("#orderCancel");
+			Button btnOrderCancel = (Button) parent.lookup("#ordercancel");
 			btnOrderCancel.setOnAction((evt)->{
 				addStage.close();
 			});
