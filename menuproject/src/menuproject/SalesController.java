@@ -3,6 +3,7 @@ package menuproject;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -12,19 +13,25 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.FileChooser.ExtensionFilter;
+import menuproject.SalesMain.SalesButtonEvent;
 
 
 public class SalesController implements Initializable {
@@ -34,12 +41,45 @@ public class SalesController implements Initializable {
 	@FXML
 	ScrollPane scrPane;
 	
+	@FXML
+	VBox vbox_menu;
+	
 	ObservableList<SalesHistory> scores;
 
+	void initShowMenu() {
+		SalesDAO instance = SalesDAO.getInstance();
+		instance.connect();
+		
+		HBox hbox = null;
+		List<SalesMenu> listMenu = instance.getMenuList();
+		for (int i = 0; i < listMenu.size(); ++i) {
+			if (i % 3 == 0) {
+				hbox = new HBox();
+				hbox.setAlignment(Pos.CENTER);
+				vbox_menu.getChildren().add(hbox);
+			}
+
+			SalesMenu menu = listMenu.get(i);
+			ImageView img = new ImageView(menu.getImage());
+			Button btn = new Button(menu.toString(), img);
+
+			btn.setContentDisplay(ContentDisplay.TOP);
+			btn.setAlignment(Pos.BOTTOM_CENTER);
+			
+//			btn.setOnAction(new SalesButtonEvent(menu));
+
+			img.setFitWidth(200);
+			img.setFitHeight(200);
+			hbox.getChildren().add(btn);
+
+		}
+	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		scores = FXCollections.observableArrayList();
 
+		initShowMenu();
+		
 		btnChart.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
