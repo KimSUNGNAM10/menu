@@ -44,6 +44,23 @@ public class SalesController implements Initializable {
 
 	ObservableList<SalesHistory> scores;
 
+	class SalesButtonEvent implements EventHandler<ActionEvent> {
+		private SalesMenu menu = null;
+		
+		SalesButtonEvent(SalesMenu menu){
+			this.menu = menu;
+		}
+		
+		@Override
+		public void handle(ActionEvent event) {
+			if (menu == null)
+				return;
+			
+			System.out.println(menu.name);
+		}
+
+	}
+	
 	void initShowMenu() {
 		SalesDAO instance = SalesDAO.getInstance();
 		instance.connect();
@@ -64,7 +81,7 @@ public class SalesController implements Initializable {
 			btn.setContentDisplay(ContentDisplay.TOP);
 			btn.setAlignment(Pos.BOTTOM_CENTER);
 
-//			btn.setOnAction(new SalesButtonEvent(menu));
+			btn.setOnAction(new SalesButtonEvent(menu));
 
 			img.setFitWidth(200);
 			img.setFitHeight(200);
