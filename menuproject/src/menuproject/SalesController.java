@@ -1,5 +1,6 @@
 package menuproject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,14 +17,18 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.FileChooser.ExtensionFilter;
+
 
 public class SalesController implements Initializable {
 	@FXML
-	Button btnChart, btnOrder;
+	Button btnChart, btnOrder, btnAdd;
 
 	ObservableList<SalesHistory> scores;
 
@@ -47,8 +52,71 @@ public class SalesController implements Initializable {
 			
 		});
 	
+		btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				buttonAddAction(arg0);
+			}
+		});
 	}
 
+		public void buttonAddAction(ActionEvent ae) { // window style 지정
+			Stage addStage = new Stage(StageStyle.UTILITY);
+			addStage.initModality(Modality.WINDOW_MODAL);
+			addStage.initOwner(btnAdd.getScene().getWindow());
+
+			try {
+				Parent parent = FXMLLoader.load(getClass().getResource("AddMenu.fxml"));
+				Scene scene = new Scene(parent);
+				addStage.setResizable(false);
+				addStage.setScene(scene);
+				addStage.show();
+
+				
+				Button btnRouteAdd = (Button) parent.lookup("#route");
+				btnRouteAdd.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						//파일선택
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.setTitle("Open Resource File");
+						fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+						File file = fileChooser.showOpenDialog(addStage);
+						if (file != null) {
+							//파일의 경로
+							String path = file.getPath();
+							
+							TextField txtRoute = (TextField) parent.lookup("#txtRoute");
+							txtRoute.setText(path);
+							
+						}
+					}
+				});
+				
+				Button btnMenuAdd = (Button) parent.lookup("#btnok");
+				btnMenuAdd.setOnAction(new EventHandler<ActionEvent>() {
+
+					
+					@Override
+					public void handle(ActionEvent event) {
+						TextField txtRoute = (TextField) parent.lookup("#txtRoute");
+						TextField txtMenuName = (TextField) parent.lookup("#txtMenuName");
+						TextField txtPrice = (TextField) parent.lookup("#txtPrice");
+						
+						SalesDAO instance = SalesDAO.getInstance();
+						instance.connect();
+						instance.insertMenu(txtMenuName.getText(), Integer.parseInt(txtPrice.getText()), txtRoute.getText());
+						
+					}
+
+				});
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
 	public void buttonOrderAction(ActionEvent ae) {
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);
