@@ -118,7 +118,13 @@ public class SalesMain extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	
+		SalesDAO instance = SalesDAO.getInstance();
+		if(instance.connect()) {
+			System.out.println("접속 성공");
+		}else {
+			System.out.println("접속 실패");
+		}
+		
 		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
