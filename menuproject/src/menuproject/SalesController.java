@@ -103,7 +103,7 @@ public class SalesController implements Initializable {
 		});
 	}
 
-	public void buttonAddAction(ActionEvent ae) { // window style 지정
+	public void buttonAddAction(ActionEvent ae) { // window style 지정';';
 		Stage addStage = new Stage(StageStyle.UTILITY);
 		addStage.initModality(Modality.WINDOW_MODAL);
 		addStage.initOwner(btnAdd.getScene().getWindow());
