@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
 
-
+//Database access object = DAO
 public class SalesDAO {
 	Connection conn = null;
 
@@ -90,6 +90,8 @@ public class SalesDAO {
 		if(conn == null)
 			return;
 		
+		//"insert into " + menuId
+		//"insert into %d", menuId
 		String sql = String.format("insert into sales_history(order_no, sale_date, menu_id, price) "
 				+ "values(sales_history_seq.nextval, "
 				+ "sysdate-%d, "
