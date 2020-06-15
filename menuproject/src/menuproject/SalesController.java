@@ -103,12 +103,9 @@ public class SalesController implements Initializable {
 //
 //				@Override
 //				public void handle(ActionEvent arg0) {
-//					// TODO Auto-generated method stub
 //					
 //				}
-//			});
-			
-			
+//			});		
 			img.setFitWidth(200);
 			img.setFitHeight(200);
 			hbox.getChildren().add(btn);
@@ -139,6 +136,7 @@ public class SalesController implements Initializable {
 
 	public void buttonAddAction(ActionEvent ae) { // window style 지정';';
 		Stage addStage = new Stage(StageStyle.UTILITY);
+		addStage.setTitle("메뉴추가");
 		addStage.initModality(Modality.WINDOW_MODAL);
 		addStage.initOwner(btnAdd.getScene().getWindow());
 
@@ -255,7 +253,7 @@ public class SalesController implements Initializable {
 				datasSales.add(new XYChart.Data(list.get(i).getDate(), list.get(i).getSales()));
 			}
 			seriesSales.setData(datasSales);
-			seriesSales.setName("매출");
+			seriesSales.setName("일매출");
 
 			barChart.setData(FXCollections.observableArrayList(seriesSales));
 

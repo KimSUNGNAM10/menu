@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <LineChart BorderPane.alignment="CENTER" id="lineChart">
+      <LineChart id="lineChart" prefHeight="375.0" prefWidth="500.0" BorderPane.alignment="CENTER">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -18,11 +17,4 @@
         </yAxis>
       </LineChart>
    </center>
-   <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="26.0" prefWidth="105.0" text="일매출" />
-         </children>
-      </HBox>
-   </top>
 </BorderPane>

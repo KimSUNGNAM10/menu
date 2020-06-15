@@ -106,7 +106,6 @@ public class SalesDAO {
 			System.out.println(r + "건 입력됨.");
 			pstmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -181,21 +180,21 @@ public class SalesDAO {
 		return list;
 	}
 	
-	//월별 판매기록
-	public ObservableList<SalesHistory> getMonthHistory(){
-		if(conn == null)
-			return null;
-					
-		String sql  = "SELECT TO_CHAR(sale_date,'yyyymm') AS d, sum(price) AS sales" + 
-				" FROM sales_history" + 
-				" GROUP BY TO_CHAR(sale_date,'yyyymm')" + 
-				" ORDER BY TO_CHAR(sale_date, 'yyyymm')"; 
-		return null;
-	}
-	
-	//년도별 판매기록
-	public List<SalesHistory> getYearHistory(){
-		return null;
-	}
-
+//	//월별 판매기록
+//	public ObservableList<SalesHistory> getMonthHistory(){
+//		if(conn == null)
+//			return null;
+//					
+//		String sql  = "SELECT TO_CHAR(sale_date,'yyyymm') AS d, sum(price) AS sales" + 
+//				" FROM sales_history" + 
+//				" GROUP BY TO_CHAR(sale_date,'yyyymm')" + 
+//				" ORDER BY TO_CHAR(sale_date, 'yyyymm')"; 
+//		return null;
+//	}
+//	
+//	//년도별 판매기록
+//	public List<SalesHistory> getYearHistory(){
+//		return null;
+//	}
+//
 }
