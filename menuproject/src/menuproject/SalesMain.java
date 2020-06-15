@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SalesMain extends Application {
+
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
 		Scene scene = new Scene(root);
+		primaryStage.setTitle("MENU");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
