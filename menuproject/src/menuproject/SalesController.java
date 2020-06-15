@@ -43,6 +43,7 @@ public class SalesController implements Initializable {
 
 	ObservableList<SalesHistory> scores;
 
+	//액션 이벤트 상속받음.
 	class SalesButtonEvent implements EventHandler<ActionEvent> {
 		private SalesMenu selMenu = null;
 		
@@ -50,6 +51,9 @@ public class SalesController implements Initializable {
 			this.selMenu = menu;
 		}
 		
+		
+		//기존 람다식에서 호출되는 이벤트에서는 어떤 메뉴가 선택되었는지 모름.
+		//그래서 상속받은 객체에 menu를담아놓고, 호출시킴.
 		@Override
 		public void handle(ActionEvent event) {
 			if (selMenu == null)
@@ -62,30 +66,49 @@ public class SalesController implements Initializable {
 	void initShowMenu() {
 		SalesDAO instance = SalesDAO.getInstance();
 		instance.connect();
-
+		
 		//hbox들 삭제.
 		while(vbox_menu.getChildren().size() > 0) {
 			vbox_menu.getChildren().remove(0);
 		}
 		
 		HBox hbox = null;
+		
+		//DAO를 이용해서 메뉴리스트를 가지고옴.
 		List<SalesMenu> listMenu = instance.getMenuList();
 		for (int i = 0; i < listMenu.size(); ++i) {
+			//3개가 채워졌을 때, 혹은 0개일 때 hbox를  생성.
 			if (i % 3 == 0) {
 				hbox = new HBox();
 				hbox.setAlignment(Pos.CENTER);
 				vbox_menu.getChildren().add(hbox);
 			}
 
+			//hbox에다가 menu를 삽입.
 			SalesMenu menu = listMenu.get(i);
 			ImageView img = new ImageView(menu.getImage());
 			Button btn = new Button(menu.toString(), img);
 
+			//컨텐츠가 버튼의 위쪽에 있도록(버튼 글씨가 아래에 있고, 컨텐츠 이미지가 위쪽에 있다)
 			btn.setContentDisplay(ContentDisplay.TOP);
+			
+			//버튼의 위치가 센터가 오도록.
 			btn.setAlignment(Pos.BOTTOM_CENTER);
 
+			//이벤트를 처리하는 객체를 세팅.
 			btn.setOnAction(new SalesButtonEvent(menu));
-
+			
+			//기존 하던데로 하면, 뭐가 클릭 되었는지 알 수 없다.
+//			btn.setOnAction(new EventHandler<ActionEvent>() {
+//
+//				@Override
+//				public void handle(ActionEvent arg0) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//			});
+			
+			
 			img.setFitWidth(200);
 			img.setFitHeight(200);
 			hbox.getChildren().add(btn);
@@ -187,7 +210,8 @@ public class SalesController implements Initializable {
 			addStage.show();
 
 			Button btnOrder = (Button) parent.lookup("#order");
-			btnOrder.setOnAction((evt)-> {				
+			btnOrder.setOnAction((evt)-> {
+				//DAO에서 구매할 때, menuId가 필요한데, 이걸 selMenu에서 끌어옴.
 				SalesDAO.getInstance().buyMenuFromId(0, selMenu.menuId);
 				addStage.close();
 			});
@@ -211,15 +235,23 @@ public class SalesController implements Initializable {
 		dao.connect();
 		ObservableList<SalesHistory> list = dao.getDayHistory();
 		try {
+			//그래프 껍데기 가져오기.
 			Parent parent = FXMLLoader.load(getClass().getResource("SalesChart.fxml"));
+			
+			//그래프 그리는 차트접근을 위해서 lookup() 으로 객체 가져옴.
 			LineChart barChart = (LineChart) parent.lookup("#lineChart");
 
+			//BarChart에서 어떤 데이터가 들어가는지 그 형식을 세팅함.
+			//XYChart에다가, String, Integer가 중요.
+			//String축에는 date가 들어가고 Integer축에는 매출금액이 들어감.
 			XYChart.Series<String, Integer> seriesSales = new XYChart.Series<String, Integer>();
+			
+			//실제 데이터를 삽입하기 위해서 빈 리스트를 생성. 
 			ObservableList<XYChart.Data<String, Integer>> datasSales = FXCollections.observableArrayList();
 
+			//dao를 통해 가져온 실제 데이터를 빈 리스트에다가 넣어줌.
 			for (int i = 0; i < list.size(); i++) {
 				datasSales.add(new XYChart.Data(list.get(i).getDate(), list.get(i).getSales()));
-
 			}
 			seriesSales.setData(datasSales);
 			seriesSales.setName("매출");
