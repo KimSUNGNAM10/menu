@@ -240,7 +240,7 @@ public class SalesController implements Initializable {
 			
 			//그래프 그리는 차트접근을 위해서 lookup() 으로 객체 가져옴.
 			LineChart barChart = (LineChart) parent.lookup("#lineChart");
-
+ 
 			//BarChart에서 어떤 데이터가 들어가는지 그 형식을 세팅함.
 			//XYChart에다가, String, Integer가 중요.
 			//String축에는 date가 들어가고 Integer축에는 매출금액이 들어감.
