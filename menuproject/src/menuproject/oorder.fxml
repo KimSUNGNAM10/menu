@@ -5,15 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Pane prefHeight="107.0" prefWidth="210.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="107.0" prefWidth="210.0"  BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="38.0" layoutY="42.0" mnemonicParsing="false" text="주문" fx:id="order"/>
-            <Button layoutX="115.0" layoutY="42.0" mnemonicParsing="false" text="주문취소" fx:id="ordercancel"/>
+            <Button fx:id="order" layoutX="38.0" layoutY="42.0" mnemonicParsing="false" text="주문" />
+            <Button fx:id="ordercancel" layoutX="115.0" layoutY="42.0" mnemonicParsing="false" text="주문취소" />
          </children>
       </Pane>
    </center>
 </BorderPane>
-
