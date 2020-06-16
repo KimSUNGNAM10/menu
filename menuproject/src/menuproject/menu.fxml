@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -16,8 +17,11 @@
                   <VBox fx:id="vbox_menu" prefHeight="434.0" prefWidth="748.0" />
                </content></ScrollPane>
           
-            <Button fx:id="btnChart" alignment="CENTER" layoutX="250.0" layoutY="500.0" prefHeight="44.0" prefWidth="92.0" text="매출" />
-            <Button fx:id="btnAdd" layoutX="479.0" layoutY="500.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="104.0" text="메뉴추가" />
+            <Button fx:id="btnChart" alignment="CENTER" layoutX="250.0" layoutY="500.0" prefHeight="44.0"
+             prefWidth="92.0" text="매출" stylesheets="@NewFile.css"/>
+             
+            <Button fx:id="btnAdd" layoutX="479.0" layoutY="500.0" mnemonicParsing="false" prefHeight="44.0" 
+            prefWidth="104.0" text="메뉴추가" stylesheets="@NewFile.css"/>
 
          </children>
       </Pane>

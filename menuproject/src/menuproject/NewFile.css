@@ -1,0 +1,7 @@
+#btnChart {
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 10, 0,5, 5.1);
+}
+
+#btnAdd {
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 10, 0,5, 5.1);
+}
