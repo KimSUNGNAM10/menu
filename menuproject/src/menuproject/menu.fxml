@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -10,18 +12,23 @@
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuproject.SalesController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url(images/F1234.jpg);">
+      <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url(images/222.jpg);">
          <children>
             <ScrollPane fx:id="scrPane" layoutX="22.0" layoutY="14.0" prefHeight="439.0" prefWidth="757.0">
                <content>
                   <VBox fx:id="vbox_menu" prefHeight="434.0" prefWidth="748.0" />
                </content></ScrollPane>
           
-            <Button fx:id="btnChart" alignment="CENTER" layoutX="250.0" layoutY="500.0" prefHeight="44.0"
-             prefWidth="92.0" text="매출" stylesheets="@NewFile.css"/>
+          
+            <Button fx:id="btnChart" alignment="CENTER" layoutX="250.0" layoutY="500.0" prefHeight="44.0" prefWidth="92.0" style="-fx-background-color: transparent;" stylesheets="@NewFile.css" text="매출" textFill="#e13914">
+               <font>
+                  <Font name="System Italic" size="27.0" />
+               </font></Button>
              
-            <Button fx:id="btnAdd" layoutX="479.0" layoutY="500.0" mnemonicParsing="false" prefHeight="44.0" 
-            prefWidth="104.0" text="메뉴추가" stylesheets="@NewFile.css"/>
+            <Button fx:id="btnAdd" layoutX="479.0" layoutY="500.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="104.0" style="-fx-background-color: transparent;" stylesheets="@NewFile.css" text="메뉴추가" textFill="#e03865">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font></Button>
 
          </children>
       </Pane>
